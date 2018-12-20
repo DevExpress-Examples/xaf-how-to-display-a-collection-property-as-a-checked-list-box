@@ -1,4 +1,4 @@
-﻿Imports System
+Imports System
 Imports DevExpress.Xpo
 Imports System.Web.UI.WebControls
 Imports DevExpress.ExpressApp.Web
@@ -13,25 +13,20 @@ Namespace DXExample.Module.Web
     Public Class WebCheckedListBoxPropertyEditor
         Inherits ASPxPropertyEditor
         Implements IComplexViewItem
-
         Public Sub New(ByVal objectType As Type, ByVal model As IModelMemberViewItem)
             MyBase.New(objectType, model)
         End Sub
         Private application As XafApplication
         Private objectSpace As IObjectSpace
-
         Protected Overrides Function CreateEditModeControlCore() As WebControl
             Return New ASPxCheckBoxList()
         End Function
-
         Protected Overrides Function CreateViewModeControlCore() As WebControl
             Dim control As New ASPxCheckBoxList()
             control.ClientEnabled = False
             Return control
         End Function
-
         Private checkedItems As XPBaseCollection
-
         Protected Overrides Sub ReadValueCore()
             MyBase.ReadValueCore()
             If TypeOf PropertyValue Is XPBaseCollection Then
@@ -42,7 +37,7 @@ Namespace DXExample.Module.Web
                 Dim classInfo As IModelClass = application.Model.BOModel.GetClass(MemberInfo.ListElementTypeInfo.Type)
                 If checkedItems.Sorting.Count > 0 Then
                     dataSource.Sorting = checkedItems.Sorting
-                ElseIf Not String.IsNullOrEmpty(classInfo.DefaultProperty) Then
+                ElseIf (Not String.IsNullOrEmpty(classInfo.DefaultProperty)) Then
                     dataSource.Sorting.Add(New SortProperty(classInfo.DefaultProperty, DevExpress.Xpo.DB.SortingDirection.Ascending))
                 End If
                 control.DataSource = dataSource
@@ -57,9 +52,8 @@ Namespace DXExample.Module.Web
                 AddHandler control.SelectedIndexChanged, AddressOf Control_SelectedIndexChanged
             End If
         End Sub
-
         Private Sub Control_SelectedIndexChanged(ByVal sender As Object, ByVal e As EventArgs)
-            Dim control As ASPxCheckBoxList = DirectCast(sender, ASPxCheckBoxList)
+            Dim control As ASPxCheckBoxList = CType(sender, ASPxCheckBoxList)
             For Each item As ListEditItem In control.Items
                 Dim obj As Object = objectSpace.GetObjectByKey(MemberInfo.ListElementTypeInfo.Type, item.Value)
                 If item.Selected Then
@@ -71,30 +65,26 @@ Namespace DXExample.Module.Web
             OnControlValueChanged()
             objectSpace.SetModified(CurrentObject)
         End Sub
-
         Public Shadows ReadOnly Property Editor() As ASPxCheckBoxList
             Get
                 Return CType(MyBase.Editor, ASPxCheckBoxList)
             End Get
         End Property
-
         Public Shadows ReadOnly Property InplaceViewModeEditor() As ASPxCheckBoxList
             Get
                 Return CType(MyBase.InplaceViewModeEditor, ASPxCheckBoxList)
             End Get
         End Property
-
         Protected Overrides Sub SetImmediatePostDataScript(ByVal script As String)
             Editor.ClientSideEvents.SelectedIndexChanged = script
         End Sub
-
         Protected Overrides Function IsMemberSetterRequired() As Boolean
             Return False
         End Function
 
         #Region "IComplexViewItem Members"
 
-        Public Sub Setup(ByVal objectSpace As IObjectSpace, ByVal application As XafApplication)
+        Public Sub Setup(ByVal objectSpace As IObjectSpace, ByVal application As XafApplication) Implements IComplexViewItem.Setup
             Me.application = application
             Me.objectSpace = objectSpace
         End Sub
