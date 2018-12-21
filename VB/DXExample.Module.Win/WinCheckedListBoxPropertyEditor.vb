@@ -1,4 +1,4 @@
-Imports System
+﻿Imports System
 Imports DevExpress.ExpressApp.Win.Editors
 Imports DevExpress.ExpressApp
 Imports DevExpress.XtraEditors
@@ -12,6 +12,7 @@ Namespace DXExample.Module.Win
     Public Class WinCheckedListBoxPropertyEditor
         Inherits WinPropertyEditor
         Implements IComplexViewItem
+
         Public Sub New(ByVal objectType As Type, ByVal model As IModelMemberViewItem)
             MyBase.New(objectType, model)
         End Sub
@@ -30,7 +31,7 @@ Namespace DXExample.Module.Win
                 Dim classInfo As IModelClass = application.Model.BOModel.GetClass(MemberInfo.ListElementTypeInfo.Type)
                 If checkedItems.Sorting.Count > 0 Then
                     dataSource.Sorting = checkedItems.Sorting
-                ElseIf (Not String.IsNullOrEmpty(classInfo.DefaultProperty)) Then
+                ElseIf Not String.IsNullOrEmpty(classInfo.DefaultProperty) Then
                     dataSource.Sorting.Add(New SortProperty(classInfo.DefaultProperty, DevExpress.Xpo.DB.SortingDirection.Ascending))
                 End If
                 Control.DataSource = dataSource
@@ -60,7 +61,7 @@ Namespace DXExample.Module.Win
 
         #Region "IComplexPropertyEditor Members"
 
-        Public Sub Setup(ByVal objectSpace As IObjectSpace, ByVal application As XafApplication) Implements IComplexViewItem.Setup
+        Public Sub Setup(ByVal objectSpace As IObjectSpace, ByVal application As XafApplication)
             Me.application = application
             Me.objectSpace = objectSpace
         End Sub
