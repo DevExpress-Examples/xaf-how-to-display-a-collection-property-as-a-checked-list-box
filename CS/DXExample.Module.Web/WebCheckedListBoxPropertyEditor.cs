@@ -2,7 +2,7 @@ using System;
 using DevExpress.Xpo;
 using System.Web.UI.WebControls;
 using DevExpress.ExpressApp.Web;
-using DevExpress.Web.ASPxEditors;
+using DevExpress.Web;
 using DevExpress.ExpressApp;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Model;

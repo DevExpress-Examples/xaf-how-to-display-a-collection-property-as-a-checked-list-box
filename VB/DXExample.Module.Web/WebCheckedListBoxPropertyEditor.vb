@@ -2,7 +2,7 @@ Imports System
 Imports DevExpress.Xpo
 Imports System.Web.UI.WebControls
 Imports DevExpress.ExpressApp.Web
-Imports DevExpress.Web.ASPxEditors
+Imports DevExpress.Web
 Imports DevExpress.ExpressApp
 Imports DevExpress.ExpressApp.Editors
 Imports DevExpress.ExpressApp.Model

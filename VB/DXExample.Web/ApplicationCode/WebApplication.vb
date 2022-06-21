@@ -10,7 +10,7 @@ Namespace DXExample.Web
 	Partial Public Class DXExampleAspNetApplication
 		Inherits WebApplication
 		Protected Overrides Sub CreateDefaultObjectSpaceProvider(ByVal args As CreateCustomObjectSpaceProviderEventArgs)
-			args.ObjectSpaceProvider = New XPObjectSpaceProviderThreadSafe(args.ConnectionString, args.Connection)
+			args.ObjectSpaceProvider = New XPObjectSpaceProvider(args.ConnectionString, args.Connection, true)
 		End Sub
 		Private module1 As DevExpress.ExpressApp.SystemModule.SystemModule
 		Private module2 As DevExpress.ExpressApp.Web.SystemModule.SystemAspNetModule
