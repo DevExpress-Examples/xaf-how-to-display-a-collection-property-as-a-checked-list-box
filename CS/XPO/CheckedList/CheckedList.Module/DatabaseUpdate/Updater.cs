@@ -15,14 +15,25 @@ public class Updater : ModuleUpdater {
     }
     public override void UpdateDatabaseAfterUpdateSchema() {
         base.UpdateDatabaseAfterUpdateSchema();
-        //string name = "MyName";
-        //DomainObject1 theObject = ObjectSpace.FirstOrDefault<DomainObject1>(u => u.Name == name);
-        //if(theObject == null) {
-        //    theObject = ObjectSpace.CreateObject<DomainObject1>();
-        //    theObject.Name = name;
-        //}
+        var masterCount = ObjectSpace.GetObjectsCount(typeof(Master), null);
+        if (masterCount == 0) {
+            var master = ObjectSpace.CreateObject<Master>();
+            master.MasterName = "TestMaster";
+            for (int i = 0; i < 5; i++) {
+                var detail = ObjectSpace.CreateObject<Detail>();
+                detail.DetailName = "Detail" + i;
+                if (i == 2 || i == 3) {
+                    master.Details.Add(detail);
+                }
+            }
+            ObjectSpace.CommitChanges();
+        }
+    }
+    private Detail CreateDetail(string name) {
+        Detail detail = ObjectSpace.CreateObject<Detail>();
+        detail.DetailName = name;
 
-		//ObjectSpace.CommitChanges(); //Uncomment this line to persist created object(s).
+        return detail;
     }
     public override void UpdateDatabaseBeforeUpdateSchema() {
         base.UpdateDatabaseBeforeUpdateSchema();
