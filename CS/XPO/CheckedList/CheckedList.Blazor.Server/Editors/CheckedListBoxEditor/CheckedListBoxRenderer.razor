@@ -1,0 +1,13 @@
+﻿<h3>CheckedListBoxRenderer</h3>
+
+@using Microsoft.AspNetCore.Components.Web
+<input value=@ComponentModel.Value
+       @onchange=@(e => ComponentModel.SetValueFromUI((string)e.Value))
+       readonly=@ComponentModel.ReadOnly
+       @attributes=@ComponentModel.Attributes />
+@code {
+    [Parameter]
+    public CheckedListBoxModel ComponentModel { get; set; }
+    public static RenderFragment Create(CheckedListBoxModel componentModel) =>
+        @<CheckedListBoxRenderer ComponentModel=@componentModel />;
+}
