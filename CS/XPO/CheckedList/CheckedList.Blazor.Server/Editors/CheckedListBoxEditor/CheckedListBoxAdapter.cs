@@ -1,7 +1,9 @@
-﻿using DevExpress.ExpressApp.Blazor.Components;
+﻿using CheckedList.Module;
+using DevExpress.ExpressApp.Blazor.Components;
 using DevExpress.ExpressApp.Blazor.Editors.Adapters;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Utils;
+using DevExpress.Xpo;
 using Microsoft.AspNetCore.Components;
 
 namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
@@ -16,10 +18,11 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
             ComponentModel.ReadOnly = !allowEdit;
         }
         public override object GetValue() {
-            return ComponentModel.Value;
+            return ComponentModel.Values;
         }
         public override void SetValue(object value) {
-            ComponentModel.Value = (string)value;
+            var coll = (XPCollection<Detail>)value;
+            ComponentModel.Values = coll.ToList();
         }
         protected override RenderFragment CreateComponent() {
             return ComponentModelObserver.Create(ComponentModel, CheckedListBoxRenderer.Create(ComponentModel));
