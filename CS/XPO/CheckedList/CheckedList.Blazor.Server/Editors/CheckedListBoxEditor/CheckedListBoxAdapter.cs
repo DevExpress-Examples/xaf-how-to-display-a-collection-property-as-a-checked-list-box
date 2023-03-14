@@ -15,7 +15,7 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
         }
         public CheckedListBoxModel ComponentModel { get; }
         public override void SetAllowEdit(bool allowEdit) {
-            ComponentModel.ReadOnly = !allowEdit;
+            ComponentModel.ReadOnly = false;
         }
         public override object GetValue() {
             return ComponentModel.Values;
