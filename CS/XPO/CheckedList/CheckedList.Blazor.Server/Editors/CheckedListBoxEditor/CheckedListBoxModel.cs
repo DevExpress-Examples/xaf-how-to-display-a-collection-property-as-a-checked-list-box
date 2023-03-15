@@ -7,7 +7,7 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
 
     public class CheckedListBoxModel : ComponentModelBase {
 
-        public CheckedListBoxModel(XPCollection<Detail> _details) {
+        public CheckedListBoxModel(IList<Detail> _details) {
             DataSource = _details;
         }
         //public List<Detail> Value {
@@ -29,7 +29,7 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
             }
 
         }
-        public XPCollection<Detail> DataSource { get; set; }
+        public IList<Detail> DataSource { get; set; }
         public bool ReadOnly {
             get => GetPropertyValue<bool>();
             set => SetPropertyValue(value);

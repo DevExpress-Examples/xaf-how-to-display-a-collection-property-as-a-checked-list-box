@@ -14,7 +14,7 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
         public CheckedListBoxEditor(Type objectType, IModelMemberViewItem model) : base(objectType, model) { }
         protected override IComponentAdapter CreateComponentAdapter() {
             this.AllowEdit.Clear();
-            var allDetails = (XPCollection<Detail>)objectSpace.GetObjects<Detail>();
+            var allDetails = objectSpace.GetObjects<Detail>();
             return new CheckedListBoxAdapter(new CheckedListBoxModel(allDetails));
         }
 
