@@ -33,18 +33,13 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
                     xpColl.BaseAdd(item);
                 }
             }
-
-
             objectSpace.SetModified(CurrentObject);
         }
-        XPBaseCollection checkedItems;
-        XafApplication application;
         IObjectSpace objectSpace;
 
         #region IComplexPropertyEditor Members
 
         public void Setup(IObjectSpace objectSpace, XafApplication application) {
-            this.application = application;
             this.objectSpace = objectSpace;
         }
 
