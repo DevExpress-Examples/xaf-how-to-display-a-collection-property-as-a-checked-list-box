@@ -29,12 +29,7 @@ public class Updater : ModuleUpdater {
             ObjectSpace.CommitChanges();
         }
     }
-    private Detail CreateDetail(string name) {
-        Detail detail = ObjectSpace.CreateObject<Detail>();
-        detail.DetailName = name;
 
-        return detail;
-    }
     public override void UpdateDatabaseBeforeUpdateSchema() {
         base.UpdateDatabaseBeforeUpdateSchema();
         //if(CurrentDBVersion < new Version("1.1.0.0") && CurrentDBVersion > new Version("0.0.0.0")) {
