@@ -7,6 +7,7 @@ using DevExpress.ExpressApp;
 using CheckedList.Module;
 using DevExpress.Persistent.BaseImpl;
 using System.Collections;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
 
@@ -16,8 +17,9 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
         protected override IComponentAdapter CreateComponentAdapter() {
             this.AllowEdit.Clear();
             List<Object> dataSource = objectSpace.GetObjects(MemberInfo.ListElementTypeInfo.Type).Cast<Object>().ToList();
-            //     var allDetails = objectSpace.GetObjects<Detail>();
-            return new CheckedListBoxAdapter(new CheckedListBoxModel(dataSource));
+            IModelClass classInfo = application.Model.BOModel.GetClass(MemberInfo.ListElementTypeInfo.Type);
+            var displayMember = classInfo.DefaultProperty;
+            return new CheckedListBoxAdapter(new CheckedListBoxModel(dataSource, displayMember));
         }
 
         protected override void WriteValueCore() {
@@ -38,11 +40,13 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
             objectSpace.SetModified(CurrentObject);
         }
         IObjectSpace objectSpace;
+        XafApplication application;
 
         #region IComplexPropertyEditor Members
 
-        public void Setup(IObjectSpace objectSpace, XafApplication application) {
-            this.objectSpace = objectSpace;
+        public void Setup(IObjectSpace _objectSpace, XafApplication _application) {
+            this.objectSpace = _objectSpace;
+            this.application = _application;
         }
 
         #endregion

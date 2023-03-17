@@ -7,16 +7,22 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
 
     public class CheckedListBoxModel : ComponentModelBase {
 
-        public CheckedListBoxModel(List<Object> _details) {
-            DataSource = _details;
+        public CheckedListBoxModel(List<Object> _source, string _fieldName) {
+            DataSource = _source;
+            FieldName = _fieldName;
         }
 
         public IEnumerable<Object> Values {
             get => GetPropertyValue<IEnumerable<Object>>();
-            set { SetPropertyValue(value); 
-                  SetValueFromUI(value);
+            set {
+                SetPropertyValue(value);
+                SetValueFromUI(value);
             }
 
+        }
+        public string FieldName {
+            get => GetPropertyValue<String>();
+            set => SetPropertyValue(value);
         }
         public List<Object> DataSource { get; set; }
         public bool ReadOnly {

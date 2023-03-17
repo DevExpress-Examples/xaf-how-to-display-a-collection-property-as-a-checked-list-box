@@ -4,7 +4,7 @@
 @using CheckedList.Module
 
 <DxListBox Data="@ComponentModel.DataSource"
-           TextFieldName="@nameof(Detail.DetailName)"
+           TextFieldName="@ComponentModel.FieldName"
            SelectionMode="ListBoxSelectionMode.Multiple"
            ShowCheckboxes="true"
            @bind-Values="@ComponentModel.Values"
