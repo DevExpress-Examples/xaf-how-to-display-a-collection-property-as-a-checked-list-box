@@ -6,6 +6,7 @@ using DevExpress.Xpo;
 using DevExpress.ExpressApp;
 using CheckedList.Module;
 using DevExpress.Persistent.BaseImpl;
+using System.Collections;
 
 namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
 
@@ -14,21 +15,22 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
         public CheckedListBoxEditor(Type objectType, IModelMemberViewItem model) : base(objectType, model) { }
         protected override IComponentAdapter CreateComponentAdapter() {
             this.AllowEdit.Clear();
-            var allDetails = objectSpace.GetObjects<Detail>();
-            return new CheckedListBoxAdapter(new CheckedListBoxModel(allDetails));
+            List<Object> dataSource = objectSpace.GetObjects(MemberInfo.ListElementTypeInfo.Type).Cast<Object>().ToList();
+            //     var allDetails = objectSpace.GetObjects<Detail>();
+            return new CheckedListBoxAdapter(new CheckedListBoxModel(dataSource));
         }
 
         protected override void WriteValueCore() {
-            var xpColl = (XPCollection<Detail>)PropertyValue;
-            var coll = (IEnumerable<Detail>)ControlValue;
+            var xpColl = (XPBaseCollection)PropertyValue;
+            var coll = (IEnumerable<Object>)ControlValue;
             foreach (var it in xpColl) {
-                var cnt = coll.Where(x => x.Oid == it.Oid).Count();
+                var cnt = coll.Where(x => ((BaseObject)x).Oid == ((BaseObject)it).Oid).Count();
                 if (cnt == 0) {
                     xpColl.BaseRemove(it);
                 }
             }
             foreach (var item in coll) {
-                var cnt = xpColl.Where(x => x.Oid == item.Oid).Count();
+                var cnt = ((IList)xpColl).Cast<BaseObject>().Where(x => x.Oid == ((BaseObject)item).Oid).Count();
                 if (cnt == 0) {
                     xpColl.BaseAdd(item);
                 }

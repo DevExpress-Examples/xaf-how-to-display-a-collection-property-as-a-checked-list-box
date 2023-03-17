@@ -7,35 +7,24 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
 
     public class CheckedListBoxModel : ComponentModelBase {
 
-        public CheckedListBoxModel(IList<Detail> _details) {
+        public CheckedListBoxModel(List<Object> _details) {
             DataSource = _details;
         }
-        //public List<Detail> Value {
-        //    get => GetPropertyValue<List<Detail>>();
-        //    set => SetPropertyValue(value);
-        //}
-        //IEnumerable<Detail> _values;
-        //public IEnumerable<Detail> Values {
-        //    get { return _values; }
-        //    set {
-        //        _values = value.ToList();
-        //    SetValueFromUI(value);
-        //    }
-        //}
-        public IEnumerable<Detail> Values {
-            get => GetPropertyValue<IEnumerable<Detail>>();
+
+        public IEnumerable<Object> Values {
+            get => GetPropertyValue<IEnumerable<Object>>();
             set { SetPropertyValue(value); 
                   SetValueFromUI(value);
             }
 
         }
-        public IList<Detail> DataSource { get; set; }
+        public List<Object> DataSource { get; set; }
         public bool ReadOnly {
             get => GetPropertyValue<bool>();
             set => SetPropertyValue(value);
         }
         // ...
-        public void SetValueFromUI(IEnumerable<Detail> value) {
+        public void SetValueFromUI(IEnumerable<Object> value) {
             SetPropertyValue(value, notify: false, nameof(Values));
             ValueChanged?.Invoke(this, EventArgs.Empty);
         }

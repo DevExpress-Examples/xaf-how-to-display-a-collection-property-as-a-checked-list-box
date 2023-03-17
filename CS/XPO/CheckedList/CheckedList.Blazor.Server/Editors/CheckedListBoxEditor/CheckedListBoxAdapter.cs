@@ -5,6 +5,7 @@ using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Utils;
 using DevExpress.Xpo;
 using Microsoft.AspNetCore.Components;
+using System.Collections;
 
 namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
   
@@ -21,8 +22,9 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
             return ComponentModel.Values;
         }
         public override void SetValue(object value) {
-            var coll = (XPCollection<Detail>)value;
-            ComponentModel.Values = coll.ToList();
+            var xpColl = ((IList)value).Cast<Object>().ToList(); ;
+         //   var coll = (List<Object>)value;
+            ComponentModel.Values = xpColl;
         }
         protected override RenderFragment CreateComponent() {
             return ComponentModelObserver.Create(ComponentModel, CheckedListBoxRenderer.Create(ComponentModel));
