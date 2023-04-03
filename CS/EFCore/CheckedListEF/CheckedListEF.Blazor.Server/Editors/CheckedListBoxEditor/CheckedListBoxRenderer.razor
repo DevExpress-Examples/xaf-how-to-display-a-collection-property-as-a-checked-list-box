@@ -1,25 +1,22 @@
-﻿<h3>CheckedListBoxRenderer</h3>
-
-@using Microsoft.AspNetCore.Components.Web
+﻿@using Microsoft.AspNetCore.Components.Web
 @using CheckedListEF.Module
 
 <DxListBox Data="@ComponentModel.DataSource"
+           ReadOnly="@ComponentModel.ReadOnly"
            TextFieldName="@ComponentModel.FieldName"
            SelectionMode="@ListBoxSelectionMode.Multiple"
            ShowCheckboxes="true"
            @bind-Values="@Values"
            @attributes=@ComponentModel.Attributes>
-
 </DxListBox>
+
 @code {
     [Parameter]
     public CheckedListBoxModel ComponentModel { get; set; }
     public static RenderFragment Create(CheckedListBoxModel componentModel) =>
         @<CheckedListBoxRenderer ComponentModel=@componentModel />;
-
     private IEnumerable<object> Values {
         get => ComponentModel.Values;
         set => ComponentModel.SetValueFromUI(value);
     }
-
 }

@@ -11,11 +11,12 @@ using DevExpress.XtraExport.Implementation;
 
 namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
 
-    [PropertyEditor(typeof(IList<Detail>), false)]
+    [PropertyEditor(typeof(IList<Object>), false)]
     public class CheckedListBoxEditor : BlazorPropertyEditorBase, IComplexViewItem {
         public CheckedListBoxEditor(Type objectType, IModelMemberViewItem model) : base(objectType, model) { }
         private XafApplication application;
         private CheckedListBoxAdapter _adapter;
+        IObjectSpace objectSpace;
         protected override IComponentAdapter CreateComponentAdapter() {
             List<object> dataSource = GetDataSource();
             IModelClass classInfo = application.Model.BOModel.GetClass(MemberInfo.ListElementTypeInfo.Type);
@@ -40,7 +41,7 @@ namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
             }
             objectSpace.SetModified(CurrentObject);
         }
-        IObjectSpace objectSpace;
+    
         protected override void RefreshReadOnly() {
             base.RefreshReadOnly();
             AllowEdit[MemberIsNotReadOnly] = true;
