@@ -8,6 +8,7 @@ using DevExpress.Persistent.BaseImpl;
 using static System.Net.Mime.MediaTypeNames;
 using DevExpress.Persistent.BaseImpl.EF;
 using DevExpress.XtraExport.Implementation;
+using System.Collections;
 
 namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
 
@@ -27,7 +28,7 @@ namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
         private List<object> GetDataSource() =>
           objectSpace.GetObjects(MemberInfo.ListElementTypeInfo.Type).Cast<object>().ToList();
         protected override void WriteValueCore() {
-            var propertyColl = (IList<object>)PropertyValue;
+            var propertyColl = (IList)PropertyValue;
             var controlColl = (IEnumerable<object>)ControlValue;
             foreach (var it in propertyColl) {
                 if (!controlColl.Any(x => ((BaseObject)x).ID == ((BaseObject)it).ID)) {
