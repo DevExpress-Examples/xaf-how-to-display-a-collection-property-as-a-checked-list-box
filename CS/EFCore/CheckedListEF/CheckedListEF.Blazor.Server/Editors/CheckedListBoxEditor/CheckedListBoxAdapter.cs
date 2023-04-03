@@ -4,6 +4,7 @@ using DevExpress.ExpressApp.Blazor.Editors.Adapters;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Utils;
 using Microsoft.AspNetCore.Components;
+using System.Collections;
 
 namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
 
@@ -14,14 +15,15 @@ namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
         }
         public CheckedListBoxModel ComponentModel { get; }
         public override void SetAllowEdit(bool allowEdit) {
-            //  ComponentModel.ReadOnly = false;
+            ComponentModel.ReadOnly = !allowEdit;
         }
         public override object GetValue() {
             return ComponentModel.Values;
         }
         public override void SetValue(object value) {
-            var coll = (IList<Detail>)value;
-            ComponentModel.Values = coll;
+            if (value is IList listValue) {
+                ComponentModel.Values = listValue.Cast<object>().ToList();
+            }
         }
         protected override RenderFragment CreateComponent() {
             return ComponentModelObserver.Create(ComponentModel, CheckedListBoxRenderer.Create(ComponentModel));

@@ -4,10 +4,10 @@
 @using CheckedListEF.Module
 
 <DxListBox Data="@ComponentModel.DataSource"
-           TextFieldName="@nameof(Detail.DetailName)"
-           SelectionMode="ListBoxSelectionMode.Multiple"
+           TextFieldName="@ComponentModel.FieldName"
+           SelectionMode="@ListBoxSelectionMode.Multiple"
            ShowCheckboxes="true"
-           @bind-Values="@ComponentModel.Values"
+           @bind-Values="@Values"
            @attributes=@ComponentModel.Attributes>
 
 </DxListBox>
@@ -16,5 +16,10 @@
     public CheckedListBoxModel ComponentModel { get; set; }
     public static RenderFragment Create(CheckedListBoxModel componentModel) =>
         @<CheckedListBoxRenderer ComponentModel=@componentModel />;
+
+    private IEnumerable<object> Values {
+        get => ComponentModel.Values;
+        set => ComponentModel.SetValueFromUI(value);
+    }
 
 }
