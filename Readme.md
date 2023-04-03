@@ -11,8 +11,10 @@
 <!-- default file list end -->
 # How to represent a collection property using a checked list box
 
+![image](https://user-images.githubusercontent.com/14300209/229557843-6b3586a5-319f-45a2-b4aa-37935dda28ed.png)
 
-<Scenario:
+
+Scenario:
 
 
 1. It is required to show a check list. It should be possible to add and remove items for this list dynamically.
