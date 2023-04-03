@@ -1,14 +1,12 @@
-﻿using CheckedList.Module;
+﻿using System.Collections;
 using DevExpress.ExpressApp.Blazor.Components;
 using DevExpress.ExpressApp.Blazor.Editors.Adapters;
 using DevExpress.ExpressApp.Editors;
 using DevExpress.ExpressApp.Utils;
-using DevExpress.Xpo;
 using Microsoft.AspNetCore.Components;
-using System.Collections;
 
 namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
-  
+
     public class CheckedListBoxAdapter : ComponentAdapterBase {
         public CheckedListBoxAdapter(CheckedListBoxModel componentModel) {
             ComponentModel = componentModel ?? throw new ArgumentNullException(nameof(componentModel));
@@ -16,15 +14,15 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
         }
         public CheckedListBoxModel ComponentModel { get; }
         public override void SetAllowEdit(bool allowEdit) {
-          //  ComponentModel.ReadOnly = false;
+            ComponentModel.ReadOnly = !allowEdit;
         }
         public override object GetValue() {
             return ComponentModel.Values;
         }
         public override void SetValue(object value) {
-            var xpColl = ((IList)value).Cast<Object>().ToList(); ;
-         //   var coll = (List<Object>)value;
-            ComponentModel.Values = xpColl;
+            if (value is IList listValue) {
+                ComponentModel.Values = listValue.Cast<object>().ToList();
+            }
         }
         protected override RenderFragment CreateComponent() {
             return ComponentModelObserver.Create(ComponentModel, CheckedListBoxRenderer.Create(ComponentModel));
