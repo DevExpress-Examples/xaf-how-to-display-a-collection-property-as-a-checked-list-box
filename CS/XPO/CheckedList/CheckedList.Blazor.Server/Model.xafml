@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application>
+  <NavigationItems NavigationStyle="Accordion" />
+  <SchemaModules>
+    <SchemaModule Name="SystemModule" Version="22.2.4.0" IsNewNode="True" />
+  </SchemaModules>
+  <Views DefaultListEditor="DevExpress.ExpressApp.Blazor.Editors.DxGridListEditor">
+    <ListView Id="Master_Details_ListView" AllowEdit="True" />
+    <DetailView Id="Master_DetailView">
+      <Items>
+        <PropertyEditor Id="Details" PropertyEditorType="CheckedList.Blazor.Server.Editors.CheckedListBoxEditor.CheckedListBoxEditor" />
+      </Items>
+    </DetailView>
+  </Views>
+</Application>
