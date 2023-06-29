@@ -35,8 +35,8 @@ public class CheckedListEFEFCoreDbContext : DbContext {
 	public CheckedListEFEFCoreDbContext(DbContextOptions<CheckedListEFEFCoreDbContext> options) : base(options) {
 	}
     //public DbSet<ModuleInfo> ModulesInfo { get; set; }
-    public DbSet<Master> Master { get; set; }
-    public DbSet<Detail> Detail { get; set; }
+    public DbSet<Master> Masters { get; set; }
+    public DbSet<Detail> Details { get; set; }
 
     protected override void OnModelCreating(ModelBuilder modelBuilder) {
         base.OnModelCreating(modelBuilder);
