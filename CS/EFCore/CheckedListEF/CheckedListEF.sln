@@ -3,12 +3,13 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.5.33424.131
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckedListEF.Blazor.Server", "CheckedListEF.Blazor.Server\CheckedListEF.Blazor.Server.csproj", "{7E03E344-BD37-450A-AE57-582B7B9B52ED}"
+EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckedListEF.Module", "CheckedListEF.Module\CheckedListEF.Module.csproj", "{A816EF7D-921D-4759-A345-6EB66CCD4400}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckedListEF.Win", "CheckedListEF.Win\CheckedListEF.Win.csproj", "{0C457A38-EF5E-4424-84BD-9107587A150D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CheckedListEF.Blazor.Server", "CheckedListEF.Blazor.Server\CheckedListEF.Blazor.Server.csproj", "{7E03E344-BD37-450A-AE57-582B7B9B52ED}"
-EndProject
+
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
