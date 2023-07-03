@@ -13,7 +13,7 @@ The created application:
 ## Implementation Details
 
 1. Create master and detail objects.
-2. Implement a [custom property editor](https://docs.devexpress.com/eXpressAppFramework/113097/ui-construction/view-items-and-property-editors/property-editors?p=netframework#custom-property-editors) depending on your application's platform. This example creates the [CheckedListBoxEditor](./CS/EFCore/CheckedListEF/CheckedListEF.Blazor.Server/Editors/CheckedListBoxEditor) editor for Blazor apps and [WinCheckedListBoxPropertyEditor.cs](./CS/EFCore/CheckedListEF/CheckedListEF.Win/Editors/WinCheckedListBoxPropertyEditor.cs) for Windows Forms.
+2. Implement a [custom property editor](https://docs.devexpress.com/eXpressAppFramework/113097/ui-construction/view-items-and-property-editors/property-editors?p=netframework#custom-property-editors) depending on your application's platform. This example creates the [CheckedListBoxEditor](./CS/EFCore/CheckedListEF/CheckedListEF.Blazor.Server/Editors/CheckedListBoxEditor) editor for Blazor apps and [WinCheckedListBoxPropertyEditor](./CS/EFCore/CheckedListEF/CheckedListEF.Win/Editors/WinCheckedListBoxPropertyEditor.cs) for Windows Forms apps.
 3. Run the application.
 
 ## Files to Review
