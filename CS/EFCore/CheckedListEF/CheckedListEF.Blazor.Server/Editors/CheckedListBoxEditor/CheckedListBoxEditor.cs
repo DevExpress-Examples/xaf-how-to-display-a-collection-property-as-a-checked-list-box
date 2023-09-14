@@ -16,15 +16,14 @@ namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
     public class CheckedListBoxEditor : BlazorPropertyEditorBase, IComplexViewItem {
         public CheckedListBoxEditor(Type objectType, IModelMemberViewItem model) : base(objectType, model) { }
         private XafApplication application;
-        private CheckedListBoxAdapter _adapter;
         IObjectSpace objectSpace;
         protected override IComponentAdapter CreateComponentAdapter() {
             List<object> dataSource = GetDataSource();
             IModelClass classInfo = application.Model.BOModel.GetClass(MemberInfo.ListElementTypeInfo.Type);
             var displayMember = classInfo.DefaultProperty;
-            _adapter = new CheckedListBoxAdapter(new CheckedListBoxModel(dataSource, displayMember));
-            return _adapter;
+            return new CheckedListBoxAdapter(new CheckedListBoxModel(dataSource, displayMember));
         }
+        public override CheckedListBoxModel ComponentModel => (Control as CheckedListBoxAdapter)?.ComponentModel;
         private List<object> GetDataSource() =>
           objectSpace.GetObjects(MemberInfo.ListElementTypeInfo.Type).Cast<object>().ToList();
         protected override void WriteValueCore() {
@@ -50,15 +49,15 @@ namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
 
         protected override void OnCurrentObjectChanging() {
             base.OnCurrentObjectChanging();
-            if (_adapter?.ComponentModel is not null) {
-                _adapter.ComponentModel.DataSource = null;
+            if (ComponentModel is not null) {
+                ComponentModel.DataSource = null;
             }
         }
 
         protected override void OnCurrentObjectChanged() {
             base.OnCurrentObjectChanged();
-            if (_adapter?.ComponentModel is not null) {
-                _adapter.ComponentModel.DataSource = GetDataSource();
+            if (ComponentModel is not null) {
+                ComponentModel.DataSource = GetDataSource();
             }
         }
         #region IComplexPropertyEditor Members

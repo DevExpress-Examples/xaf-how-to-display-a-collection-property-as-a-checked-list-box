@@ -12,7 +12,7 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
             ComponentModel = componentModel ?? throw new ArgumentNullException(nameof(componentModel));
             ComponentModel.ValueChanged += ComponentModel_ValueChanged;
         }
-        public CheckedListBoxModel ComponentModel { get; }
+        public override CheckedListBoxModel ComponentModel { get; }
         public override void SetAllowEdit(bool allowEdit) {
             ComponentModel.ReadOnly = !allowEdit;
         }
