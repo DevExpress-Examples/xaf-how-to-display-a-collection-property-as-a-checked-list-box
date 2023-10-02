@@ -29,7 +29,7 @@ namespace CheckedList.Blazor.Server.Editors.CheckedListBoxEditor {
         protected override void WriteValueCore() {
             var xpColl = (XPBaseCollection)PropertyValue;
             var coll = (IEnumerable<object>)ControlValue;
-            foreach (var it in xpColl) {
+            foreach (var it in xpColl.Cast<object>().ToList()) {
                 if (!coll.Any(x => ((BaseObject)x).Oid == ((BaseObject)it).Oid)) {
                     xpColl.BaseRemove(it);
                 }
