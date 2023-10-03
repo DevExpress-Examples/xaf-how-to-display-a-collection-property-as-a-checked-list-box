@@ -29,10 +29,8 @@ namespace CheckedListEF.Blazor.Server.Editors.CheckedListBoxEditor {
         protected override void WriteValueCore() {
             var propertyColl = (IList)PropertyValue;
             var controlColl = (IEnumerable<object>)ControlValue;
-            foreach (var it in propertyColl) {
-                if (!controlColl.Any(x => ((BaseObject)x).ID == ((BaseObject)it).ID)) {
-                    propertyColl.Remove(it);
-                }
+            foreach (var it in propertyColl.Cast<BaseObject>().Where(o => !controlColl.Any(x => ((BaseObject)x).ID == o.ID)).ToList()) {
+                propertyColl.Remove(it);
             }
             foreach (var item in controlColl) {
                 if (!propertyColl.Cast<BaseObject>().Any(x => x.ID == ((BaseObject)item).ID)) {
