@@ -51,6 +51,7 @@ public class Startup {
                     options.UseChangeTrackingProxies();
                     options.UseObjectSpaceLinkProxies();
                     options.UseXafServiceProviderContainer(serviceProvider);
+                    options.UseXafServiceProviderContainer(serviceProvider);
                     options.UseLazyLoadingProxies();
                 })
                 .AddNonPersistent();
