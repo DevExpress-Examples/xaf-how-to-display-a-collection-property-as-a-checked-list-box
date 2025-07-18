@@ -20,14 +20,14 @@ The example application:
 1. Implement [Master](./CS/EFCore/CheckedListEF/CheckedListEF.Module/BusinessObjects/Master.cs) and [Detail](./CS/EFCore/CheckedListEF/CheckedListEF.Module/BusinessObjects/Detail.cs) business object classes, where `Master` contains a collection of `Detail` objects.
 2. Copy the implementation of one of the following [custom property editors](https://docs.devexpress.com/eXpressAppFramework/113097/ui-construction/view-items-and-property-editors/property-editors#custom-property-editors):
 
-    * For Blazor applications, use [CheckedListBoxEditor](./CS/EFCore/CheckedListEF/CheckedListEF.Blazor.Server/Editors/CheckedListBoxEditor).
+    * For Blazor applications, use [CheckedListBoxEditor](./CS/EFCore/CheckedListEF/CheckedListEF.Blazor.Server/Editors/CheckedListBoxEditor/CheckedListBoxPropertyEditor.cs).
     * For Windows Forms applications, use [WinCheckedListBoxPropertyEditor.cs](./CS/EFCore/CheckedListEF/CheckedListEF.Win/Editors/WinCheckedListBoxPropertyEditor.cs).
 3. Run the application.
 4. Create several `Detail` objects, then create a new `Master` object. You can link/unlink existing `Detail` objects using editor checkboxes.
 
 ## Files to Review
 
-* Blazor - [CheckedListBoxEditor](./CS/EFCore/CheckedListEF/CheckedListEF.Blazor.Server/Editors/CheckedListBoxEditor/)
+* Blazor - [CheckedListBoxEditor](./CS/EFCore/CheckedListEF/CheckedListEF.Blazor.Server/Editors/CheckedListBoxEditor/CheckedListBoxPropertyEditor.cs)
 * Windows Forms - [WinCheckedListBoxPropertyEditor.cs](./CS/EFCore/CheckedListEF/CheckedListEF.Win/Editors/WinCheckedListBoxPropertyEditor.cs) 
 
 ## Documentation
