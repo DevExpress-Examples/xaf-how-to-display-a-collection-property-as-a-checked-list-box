@@ -27,7 +27,7 @@
 <p>4. Store object keys instead of entire objects in the editor to avoid issues with transferring data between requests.</p>
 <p>5. Override the <strong>SetImmediatePostDataScript</strong> method to support the ImmediatePostData functionality. It is required to specify what client-side event should be used to raise an XAF callback that passes the new value to the server application. Use the <strong>SelectedIndexChanged</strong> event.</p>
 <p>6. Return False in the overridden <strong>IsMemberSetterRequired</strong> method to specify that the editor should not be read-only if the bound property is read-only (because collection properties are read-only).</p>
-<p><strong>See Also:</strong><br /> <a href="https://www.devexpress.com/Support/Center/p/S30847">S30847</a><br /> <a href="http://documentation.devexpress.com/#WindowsForms/clsDevExpressXtraEditorsCheckedListBoxControltopic"><u>CheckedListBoxControl Class</u></a><br /> <a href="http://documentation.devexpress.com/#Xaf/CustomDocument3097"><u>Implement Custom Property Editors</u></a><br /> <a href="https://www.devexpress.com/Support/Center/p/E1806">How to create a DetailView with a custom set of properties</a><br /> <a href="https://supportcenter.devexpress.com/ticket/details/t1011723">XAF Blazor - How to use a TagBox to view and edit a collection property in Detail Views</a></p>
+<p><strong>See Also:</strong><br /> <a href="https://www.devexpress.com/Support/Center/p/S30847">S30847</a><br /> <a href="http://documentation.devexpress.com/#WindowsForms/clsDevExpressXtraEditorsCheckedListBoxControltopic"><u>CheckedListBoxControl Class</u></a><br /> <a href="http://documentation.devexpress.com/#Xaf/CustomDocument3097"><u>Implement Custom Property Editors</u></a><br /> <a href="https://www.devexpress.com/Support/Center/p/E1806">How to create a DetailView with a custom set of properties</a><br /> <a href="https://docs.devexpress.com/eXpressAppFramework/113568/business-model-design-orm/data-types-supported-by-built-in-editors/collection-properties">Collection Properties</a></p>
 
 <br/>
 
@@ -39,3 +39,4 @@
 
 (you will be redirected to DevExpress.com to submit your response)
 <!-- feedback end -->
+
