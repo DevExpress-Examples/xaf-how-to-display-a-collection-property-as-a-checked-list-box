@@ -14,7 +14,6 @@ public class CheckedListWindowsFormsApplication : WinApplication {
 		SplashScreen = new DXSplashScreen(typeof(XafSplashScreen), new DefaultOverlayFormOptions());
         ApplicationName = "CheckedList";
         CheckCompatibilityType = DevExpress.ExpressApp.CheckCompatibilityType.DatabaseSchema;
-        UseOldTemplates = false;
         DatabaseVersionMismatch += CheckedListWindowsFormsApplication_DatabaseVersionMismatch;
         CustomizeLanguagesList += CheckedListWindowsFormsApplication_CustomizeLanguagesList;
     }
